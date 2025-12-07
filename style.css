@@ -1,8 +1,11 @@
 
-.buttons {
+.output-display {
     outline: solid;
 }
 
-button {
-
+.buttons {
+    /* display: flex; */
+    outline: solid;
+    /* height: 50vh; */
 }
+
