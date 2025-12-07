@@ -7,13 +7,18 @@ const operators = document.querySelectorAll('.operator');
 const digits = document.querySelectorAll('.digit');
 const display = document.querySelector('.output-display');
 const clearButton = document.querySelector('#clear');
+const equalsButton = document.querySelector('#equals')
 
-clearButton.addEventListener('click', () => display.textContent = '...');
-addEventListener('keypress', (event) => {
-    if (event.key === '=') {
-        number2 = parseInt(display.textContent.split(operator).pop());
-        operate(number1, operator, number2);
-    };
+clearButton.addEventListener('click', () => {
+    display.textContent = '...';
+    number1 = null;
+    operator = null;
+    number2 = null;
+});
+
+equalsButton.addEventListener('click', () => {
+    number2 = parseInt(display.textContent.split(operator).pop());
+    operate(number1, operator, number2);
 });
 
 for (i = 0; i < digits.length; i++) {
@@ -22,9 +27,9 @@ for (i = 0; i < digits.length; i++) {
 };
 for (i = 0; i < operators.length; i++) {
     let button = operators[i];
-    operators[i].addEventListener('click', () => number1 = parseInt(display.textContent));
-    operators[i].addEventListener('click', () => operator = button.textContent);
-    operators[i].addEventListener('click', () => updateDisplay(button.textContent));
+    operators[i].addEventListener('click', () => {if (operator === null) number1 = parseInt(display.textContent)});
+    operators[i].addEventListener('click', () => {if (operator === null) updateDisplay(button.textContent)});
+    operators[i].addEventListener('click', () => {if (operator === null) operator = button.textContent});
 };
 
 function add(num1, num2) {
