@@ -17,8 +17,10 @@ clearButton.addEventListener('click', () => {
 });
 
 equalsButton.addEventListener('click', () => {
+    if (number1 != null && operator != null) {
     number2 = parseInt(display.textContent.split(operator).pop());
-    operate(number1, operator, number2);
+        if (number2) operate(number1, operator, number2);
+    };
 });
 
 for (i = 0; i < digits.length; i++) {
@@ -33,18 +35,22 @@ for (i = 0; i < operators.length; i++) {
 };
 
 function add(num1, num2) {
+    operator = null;
     return num1 + num2;
 };
 
 function subtract(num1, num2) {
+    operator = null;
     return num1 - num2;
 };
 
 function multiply(num1, num2) {
+    operator = null;
     return num1 * num2;
 };
 
 function divide(num1, num2) {
+    operator = null;
     return num1 / num2;
 };
 
