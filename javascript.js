@@ -9,10 +9,22 @@ const display = document.querySelector('.output-display');
 const clearButton = document.querySelector('#clear');
 
 clearButton.addEventListener('click', () => display.textContent = '...');
+addEventListener('keypress', (event) => {
+    if (event.key === '=') {
+        number2 = parseInt(display.textContent.split(operator).pop());
+        operate(number1, operator, number2);
+    };
+});
 
 for (i = 0; i < digits.length; i++) {
     let button = digits[i];
-    digits[i].addEventListener('click', () => updateDisplay(button.textContent, 1, 1));
+    digits[i].addEventListener('click', () => updateDisplay(button.textContent));
+};
+for (i = 0; i < operators.length; i++) {
+    let button = operators[i];
+    operators[i].addEventListener('click', () => number1 = parseInt(display.textContent));
+    operators[i].addEventListener('click', () => operator = button.textContent);
+    operators[i].addEventListener('click', () => updateDisplay(button.textContent));
 };
 
 function add(num1, num2) {
@@ -33,19 +45,24 @@ function divide(num1, num2) {
 
 function operate(num1, operator, num2) {
     if (operator === '+') {
-        console.log(add(num1, num2));
+        display.textContent = (add(num1, num2));
     }
     else if (operator === '-') {
-        console.log(subtract(num1, num2));
+        display.textContent = (subtract(num1, num2));
     }
     else if (operator === '*') {
-        console.log(multiply(num1, num2));
+        display.textContent = (multiply(num1, num2));
     }
     else if (operator === '/') {
-        console.log(divide(num1, num2));
+        display.textContent = (divide(num1, num2));
     };
 };
 
-function updateDisplay(num1, operator, num2) {
-    display.textContent = num1;
+function updateDisplay(num) {
+    if (display.textContent === '...') {
+        display.textContent = num;
+    }
+    else {
+        display.textContent += num;
+    }
 };
