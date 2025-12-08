@@ -10,6 +10,7 @@ const display = document.querySelector('.output-display');
 const clearButton = document.querySelector('#clear');
 const equalsButton = document.querySelector('#equals');
 const deleteButton = document.querySelector('#delete');
+const decimalButton = document.querySelector('#decimal');
 
 clearButton.addEventListener('click', () => {
     display.textContent = '...';
@@ -32,13 +33,18 @@ deleteButton.addEventListener('click', () => {
     if (!display.textContent) {display.textContent = '...'};
 });
 
+decimalButton.addEventListener('click', () => {
+    updateDisplay('.');
+});
+
 for (i = 0; i < digits.length; i++) {
     let button = digits[i];
     digits[i].addEventListener('click', () => updateDisplay(button.textContent));
 };
+
 for (i = 0; i < operators.length; i++) {
     let button = operators[i];
-    operators[i].addEventListener('click', () => {if (operator === null) number1 = parseInt(display.textContent)});
+    operators[i].addEventListener('click', () => {if (operator === null) number1 = Number(display.textContent)});
     operators[i].addEventListener('click', () => {if (operator === null && number1 || number1 === 0) updateDisplay(button.textContent)});
     operators[i].addEventListener('click', () => {if (operator === null && number1 || number1 === 0) operator = button.textContent});
 
