@@ -2,6 +2,7 @@
 let number1 = null;
 let operator = null;
 let number2 = null;
+let result = null;
 
 const operators = document.querySelectorAll('.operator');
 const digits = document.querySelectorAll('.digit');
@@ -44,20 +45,21 @@ for (i = 0; i < operators.length; i++) {
 
 function add(num1, num2) {
     operator = null;
-    return num1 + num2;
+    return result = num1 + num2;
 };
 function subtract(num1, num2) {
     operator = null;
-    return num1 - num2;
+    return result = num1 - num2;
 };
 function multiply(num1, num2) {
     operator = null;
-    return num1 * num2;
+    return result = num1 * num2;
 };
 function divide(num1, num2) {
     operator = null;
-    return +(num1 / num2).toFixed(3);
+    return result = +(num1 / num2).toFixed(5);
 };
+
 function operate(num1, operator, num2) {
     if (operator === '+') {
         display.textContent = (add(num1, num2));
@@ -71,13 +73,22 @@ function operate(num1, operator, num2) {
     else if (operator === '/') {
         display.textContent = (divide(num1, num2));
     };
+    number1 = null;
+    number2 = null;
+    operator = null;
 };
 
-function updateDisplay(num) {
+function updateDisplay(input) {
     if (display.textContent === '...') {
-        display.textContent = num;
+        display.textContent = input;
+    }
+    else if (result != null && !isNaN(input) && operator === null) {
+        display.textContent = input;
+        result = null;
     }
     else {
-        display.textContent += num;
+        display.textContent += input;
     }
+    console.log(input);
+    console.log(result + ' is the result');
 };
