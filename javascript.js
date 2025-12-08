@@ -13,7 +13,7 @@ const deleteButton = document.querySelector('#delete');
 const decimalButton = document.querySelector('#decimal');
 
 clearButton.addEventListener('click', () => {
-    display.textContent = '...';
+    display.textContent = '';
     number1 = null;
     operator = null;
     number2 = null;
@@ -22,19 +22,24 @@ clearButton.addEventListener('click', () => {
 
 equalsButton.addEventListener('click', () => {
     if (number1 != null && operator != null) {
-    number2 = parseInt(display.textContent.split(operator).pop());
+    number2 = Number(display.textContent.split(operator).pop());
         if (number2 === 0 && operator === '/') alert(`You can't divide by zero!`);
         else if (number2 || number2 === 0) operate(number1, operator, number2);
     };
 });
 
 deleteButton.addEventListener('click', () => {
-    if (display.textContent != '...') {display.textContent = display.textContent.substring(0, display.textContent.length - 1)};
-    if (!display.textContent) {display.textContent = '...'};
+    display.textContent = display.textContent.substring(0, display.textContent.length - 1);
 });
 
 decimalButton.addEventListener('click', () => {
-    updateDisplay('.');
+    if (!display.textContent.includes('.') && number1 === null){updateDisplay('.')}
+    else if (number1 != 'null'){
+        number2 = display.textContent.split(operator).pop()
+        if (!number2.includes('.')) {
+            updateDisplay('.');
+        };
+    };
 });
 
 for (i = 0; i < digits.length; i++) {
@@ -92,7 +97,7 @@ function operate(num1, operator, num2) {
 };
 
 function updateDisplay(input) {
-    if (display.textContent === '...') {
+    if (display.textContent === '') {
         display.textContent = input;
     }
     else if (result != null && !isNaN(input) && operator === null) {
