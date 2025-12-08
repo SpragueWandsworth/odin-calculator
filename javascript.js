@@ -44,19 +44,19 @@ for (i = 0; i < operators.length; i++) {
 
 function add(num1, num2) {
     operator = null;
-    return Math.round(((num1 + num2) * 100) / 100);
+    return num1 + num2;
 };
 function subtract(num1, num2) {
     operator = null;
-    return Math.round(((num1 - num2) * 100) / 100);
-}; 
+    return num1 - num2;
+};
 function multiply(num1, num2) {
     operator = null;
-    return Math.round(((num1 * num2) * 100) / 100);
+    return num1 * num2;
 };
 function divide(num1, num2) {
     operator = null;
-    return Math.round(((num1 / num2) * 100) / 100);
+    return +(num1 / num2).toFixed(3);
 };
 function operate(num1, operator, num2) {
     if (operator === '+') {
