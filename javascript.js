@@ -19,8 +19,8 @@ clearButton.addEventListener('click', () => {
 equalsButton.addEventListener('click', () => {
     if (number1 != null && operator != null) {
     number2 = parseInt(display.textContent.split(operator).pop());
-        if (number2 === 0) alert(`You can't divide by zero!`);
-        else if (number2) operate(number1, operator, number2);
+        if (number2 === 0 && operator === '/') alert(`You can't divide by zero!`);
+        else if (number2 || number2 === 0) operate(number1, operator, number2);
     };
 });
 
@@ -37,8 +37,8 @@ for (i = 0; i < operators.length; i++) {
     operators[i].addEventListener('click', () => {
         if (number1 != null && operator != null) {
         number2 = parseInt(display.textContent.split(operator).pop());
-            if (number2 === 0) alert(`You can't divide by zero!`);
-            else if (number2) operate(number1, operator, number2);
+            if (number2 === 0 && operator === '/') alert(`You can't divide by zero!`)
+            else if (number2 || number2 === 0) operate(number1, operator, number2);
         }});
 };
 
