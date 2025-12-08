@@ -31,15 +31,15 @@ for (i = 0; i < digits.length; i++) {
 for (i = 0; i < operators.length; i++) {
     let button = operators[i];
     operators[i].addEventListener('click', () => {if (operator === null) number1 = parseInt(display.textContent)});
-    operators[i].addEventListener('click', () => {if (operator === null && number1) updateDisplay(button.textContent)});
-    operators[i].addEventListener('click', () => {if (operator === null && number1) operator = button.textContent});
+    operators[i].addEventListener('click', () => {if (operator === null && number1 || number1 === 0) updateDisplay(button.textContent)});
+    operators[i].addEventListener('click', () => {if (operator === null && number1 || number1 === 0) operator = button.textContent});
 
     operators[i].addEventListener('click', () => {
         if (number1 != null && operator != null) {
         number2 = parseInt(display.textContent.split(operator).pop());
             if (number2 === 0) alert(`You can't divide by zero!`);
             else if (number2) operate(number1, operator, number2);
-        }});//{if (operator && number2) operate(number1, operator, number2)});
+        }});
 };
 
 function add(num1, num2) {
