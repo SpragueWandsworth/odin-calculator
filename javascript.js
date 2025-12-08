@@ -8,13 +8,15 @@ const operators = document.querySelectorAll('.operator');
 const digits = document.querySelectorAll('.digit');
 const display = document.querySelector('.output-display');
 const clearButton = document.querySelector('#clear');
-const equalsButton = document.querySelector('#equals')
+const equalsButton = document.querySelector('#equals');
+const deleteButton = document.querySelector('#delete');
 
 clearButton.addEventListener('click', () => {
     display.textContent = '...';
     number1 = null;
     operator = null;
     number2 = null;
+    result = null;
 });
 
 equalsButton.addEventListener('click', () => {
@@ -23,6 +25,11 @@ equalsButton.addEventListener('click', () => {
         if (number2 === 0 && operator === '/') alert(`You can't divide by zero!`);
         else if (number2 || number2 === 0) operate(number1, operator, number2);
     };
+});
+
+deleteButton.addEventListener('click', () => {
+    if (display.textContent != '...') {display.textContent = display.textContent.substring(0, display.textContent.length - 1)};
+    if (!display.textContent) {display.textContent = '...'};
 });
 
 for (i = 0; i < digits.length; i++) {
@@ -88,7 +95,5 @@ function updateDisplay(input) {
     }
     else {
         display.textContent += input;
-    }
-    console.log(input);
-    console.log(result + ' is the result');
+    };
 };
