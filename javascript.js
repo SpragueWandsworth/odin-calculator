@@ -32,7 +32,7 @@ for (i = 0; i < operators.length; i++) {
     let button = operators[i];
     operators[i].addEventListener('click', () => {if (operator === null) number1 = parseInt(display.textContent)});
     operators[i].addEventListener('click', () => {if (operator === null && number1) updateDisplay(button.textContent)});
-
+    operators[i].addEventListener('click', () => {if (operator === null && number1) operator = button.textContent});
 
     operators[i].addEventListener('click', () => {
         if (number1 != null && operator != null) {
@@ -40,31 +40,24 @@ for (i = 0; i < operators.length; i++) {
             if (number2 === 0) alert(`You can't divide by zero!`);
             else if (number2) operate(number1, operator, number2);
         }});//{if (operator && number2) operate(number1, operator, number2)});
-
-
-    operators[i].addEventListener('click', () => {if (operator === null && number1) operator = button.textContent});
 };
 
 function add(num1, num2) {
     operator = null;
-    return num1 + num2;
+    return Math.round(((num1 + num2) * 100) / 100);
 };
-
 function subtract(num1, num2) {
     operator = null;
-    return num1 - num2;
-};
-
+    return Math.round(((num1 - num2) * 100) / 100);
+}; 
 function multiply(num1, num2) {
     operator = null;
-    return num1 * num2;
+    return Math.round(((num1 * num2) * 100) / 100);
 };
-
 function divide(num1, num2) {
     operator = null;
-    return num1 / num2;
+    return Math.round(((num1 / num2) * 100) / 100);
 };
-
 function operate(num1, operator, num2) {
     if (operator === '+') {
         display.textContent = (add(num1, num2));
