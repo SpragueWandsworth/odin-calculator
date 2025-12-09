@@ -145,11 +145,23 @@ document.addEventListener('keyup', (event) => {
         case '-':
         case '*':
         case '/':
-            console.log('operator pressed')
             if (operator === null && !'+-*/'.includes(display.textContent)) number1 = Number(display.textContent)
             if (operator === null && number1 || number1 === 0) updateDisplay(event.key)
             if (operator === null && number1 || number1 === 0) operator = event.key
-            if (number1 != null && operator != null) evaluateUsingOperator();     
+            if (number1 != null && operator != null) evaluateUsingOperator()
+            break;
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+            console.log('number pressed')
+            updateDisplay(parseInt(event.key));
     }
     console.log(event.key);
 });
