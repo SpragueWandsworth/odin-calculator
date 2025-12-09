@@ -33,19 +33,13 @@ for (i = 0; i < digits.length; i++) {
 
 for (i = 0; i < operators.length; i++) {
     let button = operators[i];
-    operators[i].addEventListener('click', () => {if (operator === null && !'+-*/'.includes(display.textContent)) number1 = Number(display.textContent)}); // && result === null
+    operators[i].addEventListener('click', () => {if (operator === null && !'+-*/'.includes(display.textContent)) number1 = Number(display.textContent)});
     operators[i].addEventListener('click', () => {if (operator === null && number1 || number1 === 0) updateDisplay(button.textContent)});
     operators[i].addEventListener('click', () => {if (operator === null && number1 || number1 === 0) operator = button.textContent});
 
     operators[i].addEventListener('click', () => {
         if (number1 != null && operator != null) {
-            let split = display.textContent.split(operator);
-            if (split[1]){
-                number2 = parseInt(split.pop());
-                console.log(number2 + ' is number 2');
-            }
-            if (number2 === 0 && operator === '/') alert(`You can't divide by zero!`)
-            else if (number2 || number2 === 0) operate(number1, operator, number2);
+            evaluateUsingOperator();
         }});
 };
 
@@ -103,7 +97,6 @@ function deleteLast() {
         number2 = Number(temparr[1]);
     }
     if ('+-*/'.includes(removedNumber)) {
-        console.log('operator removed');
         operator = null;
     };
 };
@@ -125,6 +118,16 @@ function addDecimal() {
         };
     };
 };
+
+function evaluateUsingOperator () {
+    let split = display.textContent.split(operator);
+    if (split[1]){
+        number2 = parseInt(split.pop());
+        console.log(number2 + ' is number 2');
+    }
+    if (number2 === 0 && operator === '/') alert(`You can't divide by zero!`)
+    else if (number2 || number2 === 0) operate(number1, operator, number2);
+}
 //Keyboard Support
 
 document.addEventListener('keyup', (event) => {
@@ -138,7 +141,15 @@ document.addEventListener('keyup', (event) => {
         case '.':
             addDecimal();
             break;
-             
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+            console.log('operator pressed')
+            if (operator === null && !'+-*/'.includes(display.textContent)) number1 = Number(display.textContent)
+            if (operator === null && number1 || number1 === 0) updateDisplay(event.key)
+            if (operator === null && number1 || number1 === 0) operator = event.key
+            if (number1 != null && operator != null) evaluateUsingOperator();     
     }
     console.log(event.key);
 });
