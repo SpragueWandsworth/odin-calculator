@@ -20,27 +20,11 @@ clearButton.addEventListener('click', () => {
     result = null;
 });
 
-equalsButton.addEventListener('click', () => {
-    if (number1 != null && operator != null) {
-    number2 = Number(display.textContent.split(operator).pop());
-        if (number2 === 0 && operator === '/') alert(`You can't divide by zero!`);
-        else if (number2 || number2 === 0) operate(number1, operator, number2);
-    };
-});
+equalsButton.addEventListener('click', () => evauluate());
 
-deleteButton.addEventListener('click', () => {
-    deleteLast();
-});
+deleteButton.addEventListener('click', () => deleteLast());
 
-decimalButton.addEventListener('click', () => {
-    if (!display.textContent.includes('.') && number1 === null){updateDisplay('.')}
-    else if (number1 != 'null'){
-        number2 = display.textContent.split(operator).pop()
-        if (!number2.includes('.')) {
-            updateDisplay('.');
-        };
-    };
-});
+decimalButton.addEventListener('click', () => addDecimal());
 
 for (i = 0; i < digits.length; i++) {
     let button = digits[i];
@@ -55,7 +39,11 @@ for (i = 0; i < operators.length; i++) {
 
     operators[i].addEventListener('click', () => {
         if (number1 != null && operator != null) {
-        number2 = parseInt(display.textContent.split(operator).pop());
+            let split = display.textContent.split(operator);
+            if (split[1]){
+                number2 = parseInt(split.pop());
+                console.log(number2 + ' is number 2');
+            }
             if (number2 === 0 && operator === '/') alert(`You can't divide by zero!`)
             else if (number2 || number2 === 0) operate(number1, operator, number2);
         }});
@@ -75,10 +63,11 @@ function multiply(num1, num2) {
 };
 function divide(num1, num2) {
     operator = null;
-    return result = +(num1 / num2).toFixed(5);
+    return result = +(num1 / num2).toFixed(4);
 };
 
 function operate(num1, operator, num2) {
+    console.log(`${num1} is num1, ${operator} is the operator, ${num2} is num2`)
     if (operator === '+') {
         display.textContent = (add(num1, num2));
     }
@@ -91,9 +80,10 @@ function operate(num1, operator, num2) {
     else if (operator === '/') {
         display.textContent = (divide(num1, num2));
     };
-    number1 = null;
+    number1 = result;
     number2 = null;
     operator = null;
+    result = null;
 };
 
 function updateDisplay(input) {
@@ -113,11 +103,9 @@ function updateDisplay(input) {
 
 
 function deleteLast() {
-    let removedNumber = display.textContent.slice(-1); //move once working
+    let removedNumber = display.textContent.slice(-1);
     display.textContent = display.textContent.substring(0, display.textContent.length - 1);
     let temparr = display.textContent.split(operator);
-    console.log(removedNumber);
-    console.log(temparr);
     number1 = Number(temparr[0]);
     if (temparr[1]) {
         number2 = Number(temparr[1]);
@@ -125,14 +113,40 @@ function deleteLast() {
     if ('+-*/'.includes(removedNumber)) {
         console.log('operator removed');
         operator = null;
-    }
-}
+    };
+};
+
+function evauluate() {
+    if (number1 != null && operator != null) {
+        number2 = Number(display.textContent.split(operator).pop());
+        if (number2 === 0 && operator === '/') alert(`You can't divide by zero!`);
+        else if (number2 || number2 === 0) operate(number1, operator, number2);
+    };
+};
+
+function addDecimal() {
+    if (!display.textContent.includes('.') && number1 === null){updateDisplay('.')}
+    else if (number1 != 'null'){
+        number2 = display.textContent.split(operator).pop();
+        if (!number2.includes('.')) {
+            updateDisplay('.');
+        };
+    };
+};
 //Keyboard Support
 
 document.addEventListener('keyup', (event) => {
     switch (event.key) {
         case 'Delete':
             deleteLast();
+            break;
+        case '=':
+            evauluate();
+            break;
+        case '.':
+            addDecimal();
+            break;
+             
     }
 
     console.log(event.key);
