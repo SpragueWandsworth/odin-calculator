@@ -33,7 +33,7 @@ for (i = 0; i < digits.length; i++) {
 
 for (i = 0; i < operators.length; i++) {
     let button = operators[i];
-    operators[i].addEventListener('click', () => {if (operator === null && result === null) number1 = Number(display.textContent)});
+    operators[i].addEventListener('click', () => {if (operator === null && !'+-*/'.includes(display.textContent)) number1 = Number(display.textContent)}); // && result === null
     operators[i].addEventListener('click', () => {if (operator === null && number1 || number1 === 0) updateDisplay(button.textContent)});
     operators[i].addEventListener('click', () => {if (operator === null && number1 || number1 === 0) operator = button.textContent});
 
@@ -83,11 +83,15 @@ function operate(num1, operator, num2) {
     number1 = result;
     number2 = null;
     operator = null;
-    //result = null;
 };
 
 function updateDisplay(input) {
-
+    if (Number(display.textContent) === result && !'+-*/'.includes(input)) {
+        display.textContent = input;
+    }
+    else {
+    display.textContent += input;
+    };
 };
     //if (display.textContent === '') {
         //display.textContent = input;
