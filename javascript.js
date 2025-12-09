@@ -33,7 +33,7 @@ for (i = 0; i < digits.length; i++) {
 
 for (i = 0; i < operators.length; i++) {
     let button = operators[i];
-    operators[i].addEventListener('click', () => {if (operator === null) number1 = Number(display.textContent)});
+    operators[i].addEventListener('click', () => {if (operator === null && result === null) number1 = Number(display.textContent)});
     operators[i].addEventListener('click', () => {if (operator === null && number1 || number1 === 0) updateDisplay(button.textContent)});
     operators[i].addEventListener('click', () => {if (operator === null && number1 || number1 === 0) operator = button.textContent});
 
@@ -83,10 +83,11 @@ function operate(num1, operator, num2) {
     number1 = result;
     number2 = null;
     operator = null;
-    result = null;
+    //result = null;
 };
 
 function updateDisplay(input) {
+    console.log('here')
     if (display.textContent === '') {
         display.textContent = input;
     }
@@ -95,12 +96,16 @@ function updateDisplay(input) {
         display.textContent = input;
         result = null;
         }
+        else if (display.textContent != ''){
+            console.log('got here')
+            display.textContent+= input;
+        }
     }
     else {
+        console.log('aqui')
         display.textContent += input;
     };
 };
-
 
 function deleteLast() {
     let removedNumber = display.textContent.slice(-1);
@@ -125,8 +130,8 @@ function evauluate() {
 };
 
 function addDecimal() {
-    if (!display.textContent.includes('.') && number1 === null){updateDisplay('.')}
-    else if (number1 != 'null'){
+    if (!display.textContent.includes('.') && number1 === result){updateDisplay('.')}
+    else if (number1 != null){
         number2 = display.textContent.split(operator).pop();
         if (!number2.includes('.')) {
             updateDisplay('.');
