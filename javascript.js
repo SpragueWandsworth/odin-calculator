@@ -100,11 +100,22 @@ function updateDisplay(input) {
     if (display.textContent === '') {
         display.textContent = input;
     }
-    else if (result != null && !isNaN(input) && operator === null) {
+    else if (result != null && operator === null) {
+        if (!isNaN(input) || input === '.') {
         display.textContent = input;
         result = null;
+        }
     }
     else {
         display.textContent += input;
     };
 };
+
+//Keyboard Support
+
+document.addEventListener('keypress', (event) => {
+    switch (event) {
+        case 'b':
+            console.log(1);
+    };
+});
