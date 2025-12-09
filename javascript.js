@@ -29,7 +29,7 @@ equalsButton.addEventListener('click', () => {
 });
 
 deleteButton.addEventListener('click', () => {
-    display.textContent = display.textContent.substring(0, display.textContent.length - 1);
+    deleteLast();
 });
 
 decimalButton.addEventListener('click', () => {
@@ -111,11 +111,29 @@ function updateDisplay(input) {
     };
 };
 
+
+function deleteLast() {
+    let removedNumber = display.textContent.slice(-1); //move once working
+    display.textContent = display.textContent.substring(0, display.textContent.length - 1);
+    let temparr = display.textContent.split(operator);
+    console.log(removedNumber);
+    console.log(temparr);
+    number1 = Number(temparr[0]);
+    if (temparr[1]) {
+        number2 = Number(temparr[1]);
+    }
+    if ('+-*/'.includes(removedNumber)) {
+        console.log('operator removed');
+        operator = null;
+    }
+}
 //Keyboard Support
 
-document.addEventListener('keypress', (event) => {
-    switch (event) {
-        case 'b':
-            console.log(1);
-    };
+document.addEventListener('keyup', (event) => {
+    switch (event.key) {
+        case 'Delete':
+            deleteLast();
+    }
+
+    console.log(event.key);
 });
