@@ -128,7 +128,7 @@ function deleteLast() {
 
 function evaluate() {
     if (number1 != null && operator != null) {
-        number2 = Number(display.textContent.split(operator).pop()); //test parseint 
+        number2 = Number(display.textContent.split(operator).pop());
         if (number2 === 0 && operator === '/') alert(`You can't divide by zero!`);
         else if (number2 || number2 === 0) operate(number1, operator, number2);
     };
@@ -136,7 +136,7 @@ function evaluate() {
 
 function addDecimal() {
     if (!display.textContent.includes('.') && number1 === result){updateDisplay('.')}
-    else if (number1 != null){
+    else if (number1 != null && operator != null){
         number2 = display.textContent.split(operator).pop();
         if (!number2.includes('.')) {
             updateDisplay('.');
