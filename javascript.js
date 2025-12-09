@@ -20,7 +20,7 @@ clearButton.addEventListener('click', () => {
     result = null;
 });
 
-equalsButton.addEventListener('click', () => evauluate());
+equalsButton.addEventListener('click', () => evaluate());
 
 deleteButton.addEventListener('click', () => deleteLast());
 
@@ -87,25 +87,26 @@ function operate(num1, operator, num2) {
 };
 
 function updateDisplay(input) {
-    console.log('here')
-    if (display.textContent === '') {
-        display.textContent = input;
-    }
-    else if (result != null && operator === null) {
-        if (!isNaN(input) || input === '.') {
-        display.textContent = input;
-        result = null;
-        }
-        else if (display.textContent != ''){
-            console.log('got here')
-            display.textContent+= input;
-        }
-    }
-    else {
-        console.log('aqui')
-        display.textContent += input;
-    };
+
 };
+    //if (display.textContent === '') {
+        //display.textContent = input;
+    //}
+    //else if (result != null && operator === null) {
+        //if (!isNaN(input) || input === '.') {
+        //display.textContent = input;
+        //result = null;
+        //}
+        //else if (display.textContent != ''){
+            //console.log('here')
+            //display.textContent+= input;
+        //}
+    //}
+    //else {
+        //console.log('aqui')
+        //display.textContent += input;
+    //};
+//};
 
 function deleteLast() {
     let removedNumber = display.textContent.slice(-1);
@@ -121,9 +122,9 @@ function deleteLast() {
     };
 };
 
-function evauluate() {
+function evaluate() {
     if (number1 != null && operator != null) {
-        number2 = Number(display.textContent.split(operator).pop());
+        number2 = Number(display.textContent.split(operator).pop()); //test parseint 
         if (number2 === 0 && operator === '/') alert(`You can't divide by zero!`);
         else if (number2 || number2 === 0) operate(number1, operator, number2);
     };
@@ -146,13 +147,12 @@ document.addEventListener('keyup', (event) => {
             deleteLast();
             break;
         case '=':
-            evauluate();
+            evaluate();
             break;
         case '.':
             addDecimal();
             break;
              
     }
-
     console.log(event.key);
 });
