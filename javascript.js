@@ -51,15 +51,15 @@ for (i = 0; i < operators.length; i++) {
 
 function add(num1, num2) {
     operator = null;
-    return result = num1 + num2;
+    return result = +(num1 + num2).toFixed(4);
 };
 function subtract(num1, num2) {
     operator = null;
-    return result = num1 - num2;
+    return result = +(num1 - num2).toFixed(4);
 };
 function multiply(num1, num2) {
     operator = null;
-    return result = num1 * num2;
+    return result = +(num1 * num2).toFixed(4);
 };
 function divide(num1, num2) {
     operator = null;
@@ -93,24 +93,6 @@ function updateDisplay(input) {
     display.textContent += input;
     };
 };
-    //if (display.textContent === '') {
-        //display.textContent = input;
-    //}
-    //else if (result != null && operator === null) {
-        //if (!isNaN(input) || input === '.') {
-        //display.textContent = input;
-        //result = null;
-        //}
-        //else if (display.textContent != ''){
-            //console.log('here')
-            //display.textContent+= input;
-        //}
-    //}
-    //else {
-        //console.log('aqui')
-        //display.textContent += input;
-    //};
-//};
 
 function deleteLast() {
     let removedNumber = display.textContent.slice(-1);
