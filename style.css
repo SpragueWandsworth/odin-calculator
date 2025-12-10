@@ -29,6 +29,10 @@ body {
     padding: 5px;
     background-color: #97BC62;
     border-radius: 16px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .top-buttons {
