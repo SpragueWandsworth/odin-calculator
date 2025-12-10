@@ -3,6 +3,13 @@
     font-size: 48px;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .output-display {
     outline: solid;
     width: 50vw;
@@ -10,13 +17,22 @@
     padding: 5px;
 }
 
+.top-buttons {
+    outline: solid;
+    display: flex;
+    justify-content: center;
+}
+
 .main-block {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .digits { 
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    max-width: 8vw;
     outline: solid salmon;
 }
 
@@ -33,6 +49,10 @@
 
 .buttons {
     display: flex;
+    justify-content: center;
     outline: solid;
 }
 
+button {
+    margin: 5px;
+}
