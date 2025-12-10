@@ -12,7 +12,7 @@ body {
 
 .output-display {
     outline: solid;
-    width: 50vw;
+    width: 25vw;
     height: 67px;
     padding: 5px;
 }
@@ -28,19 +28,6 @@ body {
     flex-wrap: wrap;
 }
 
-.digits { 
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 8vw;
-    outline: solid salmon;
-}
-
-.operators {
-    display: flex;
-    flex-direction: column;
-}
-
 .operator {
     display: flex;
     justify-content: center;
@@ -49,10 +36,17 @@ body {
 
 .buttons {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     outline: solid;
 }
 
+.row {
+    display: flex;
+}
+
 button {
+    padding-left: 20px;
+    padding-right: 20px;
     margin: 5px;
+
 }
