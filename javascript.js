@@ -99,6 +99,9 @@ function deleteLast() {
     if ('+-*/'.includes(removedNumber)) {
         operator = null;
     };
+    if (display.textContent === '') {
+        number1 = null;
+    }
 };
 
 function evaluate() {
