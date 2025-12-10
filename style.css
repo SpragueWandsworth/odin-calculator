@@ -1,12 +1,38 @@
 
+* {
+    font-size: 48px;
+}
+
 .output-display {
     outline: solid;
-    height: 4vh;
+    width: 50vw;
+    height: 67px;
+    padding: 5px;
+}
+
+.main-block {
+    display: flex;
+}
+
+.digits { 
+    display: flex;
+    justify-content: center;
+    outline: solid salmon;
+}
+
+.operators {
+    display: flex;
+    flex-direction: column;
+}
+
+.operator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .buttons {
-    /* display: flex; */
+    display: flex;
     outline: solid;
-    /* height: 50vh; */
 }
 
